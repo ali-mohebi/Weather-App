@@ -1,14 +1,17 @@
 package com.example.weather.model
 
-import androidx.room.*
-import com.google.gson.Gson
+import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import com.google.gson.reflect.TypeToken
-import java.lang.reflect.Type
+import kotlinx.parcelize.Parcelize
 
 
 const val WEATHER_TABLE_NAME = "weathers"
 
+@Parcelize
 @Entity(tableName = WEATHER_TABLE_NAME)
 data class WeatherResponse(
     @SerializedName("coord")
@@ -52,12 +55,13 @@ data class WeatherResponse(
 
     val cityName: String?
 
-)
+) : Parcelable
 {
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0
 }
 
+@Parcelize
 data class Coordination(
     @ColumnInfo(name = "latitude")
     @SerializedName("lat")
@@ -66,8 +70,9 @@ data class Coordination(
     @ColumnInfo(name = "longitude")
     @SerializedName("lon")
     val longitude: Double?
-)
+) : Parcelable
 
+@Parcelize
 data class Weather(
     val id: Long,
 
@@ -79,8 +84,9 @@ data class Weather(
 
     @SerializedName("icon")
     val iconId: String?
-)
+) : Parcelable
 
+@Parcelize
 data class TemperatureDetails(
     @SerializedName("temp")
     val temperature: Double?,
@@ -96,19 +102,22 @@ data class TemperatureDetails(
     @ColumnInfo(name = "temp_max")
     @SerializedName("temp_max")
     val maxTemperature: Double?,
-)
+) : Parcelable
 
+@Parcelize
 data class SystemDetails(
     @SerializedName("country")
     val countryCode: String?
-)
+) : Parcelable
 
+@Parcelize
 data class Cloud(
     @ColumnInfo(name = "cloudiness_in_percent")
     @SerializedName("all")
     val cloudinessInPercent: Int?
-)
+) : Parcelable
 
+@Parcelize
 data class RainVolume(
     @ColumnInfo(name = "in_last_1_hour")
     @SerializedName("1h")
@@ -117,8 +126,9 @@ data class RainVolume(
     @ColumnInfo(name = "in_last_3_hours")
     @SerializedName("3h")
     val inLast3Hours: Double?
-)
+) : Parcelable
 
+@Parcelize
 data class SnowVolume(
     @ColumnInfo(name = "in_last_1_hour")
     @SerializedName("1h")
@@ -127,4 +137,4 @@ data class SnowVolume(
     @ColumnInfo(name = "in_last_3_hours")
     @SerializedName("3h")
     val inLast3Hours: Double?
-)
+) : Parcelable

@@ -6,6 +6,10 @@
     <data>
         
         <variable
+            name="listener"
+            type="com.example.weather.view.SearchFragmentListener" />
+        
+        <variable
             name="model"
             type="com.example.weather.model.WeatherResponse" />
     
@@ -20,8 +24,8 @@
         <include
             android:id="@+id/toolbar_search"
             layout="@layout/layout_toolbar_search" />
-    
-    
+        
+        
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_search"
             android:layout_width="match_parent"
@@ -41,15 +45,35 @@
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:maxLines="1"
-            android:textStyle="bold"
             android:text="@string/oops_something_went_wrong_while_loading"
             android:textSize="14sp"
+            android:textStyle="bold"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@string/oops_something_went_wrong_while_loading"
+            tools:visibility="invisible" />
+        
+        <TextView
+            android:id="@+id/textView_search_noResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="@string/oops_no_result_found_try_again"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/oops_no_result_found_try_again"
             tools:visibility="visible" />
         
         <ProgressBar

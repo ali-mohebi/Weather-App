@@ -35,6 +35,12 @@
         android:label="WeatherDetailsFragment"
         tools:layout="@layout/fragment_weather_details">
         
+        <argument
+            android:name="locationResponse"
+            android:defaultValue="@null"
+            app:argType="com.example.weather.model.LocationResponse"
+            app:nullable="true" />
+        
     </fragment>
 
 

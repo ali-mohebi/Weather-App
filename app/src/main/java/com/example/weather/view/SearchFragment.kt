@@ -13,18 +13,19 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.weather.databinding.FragmentSearchBinding
+import com.example.weather.model.LocationResponse
 import com.example.weather.utils.KeyboardManager
 import com.example.weather.utils.TAG
 import com.example.weather.utils.WrapContentLinearLayoutManager
 import com.example.weather.viewmodel.SearchViewModel
 
-class SearchFragment : Fragment()
+class SearchFragment : Fragment(), SearchFragmentListener
 {
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: SearchViewModel by viewModels()
-//    private val _adapter = SearchAdapter(arrayListOf())
+    private val _adapter = SearchAdapter(arrayListOf())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +46,7 @@ class SearchFragment : Fragment()
     {
         setActionUp()
         addImeOptionsListener()
+        setDataBindingModels()
         setupRecyclerView()
         observeViewModels()
     }
@@ -56,10 +58,13 @@ class SearchFragment : Fragment()
         binding.toolbarSearch.toolbar.setupWithNavController(navController, appBarConfiguration)
     }
 
-    private fun addImeOptionsListener() {
+    private fun addImeOptionsListener()
+    {
         binding.toolbarSearch.editTextSearchToolbarQuery.setOnEditorActionListener { v, actionId, event ->
-            return@setOnEditorActionListener when (actionId ) {
-                EditorInfo.IME_ACTION_SEARCH -> {
+            return@setOnEditorActionListener when (actionId)
+            {
+                EditorInfo.IME_ACTION_SEARCH ->
+                {
                     search()
                     KeyboardManager.hideKeyboard(context)
                     true
@@ -69,7 +74,8 @@ class SearchFragment : Fragment()
         }
     }
 
-    private fun search() {
+    private fun search()
+    {
         val input = binding.toolbarSearch.editTextSearchToolbarQuery.text.toString()
         fetchWeather(input)
     }
@@ -79,11 +85,17 @@ class SearchFragment : Fragment()
         viewModel.fetchLocations(city)
     }
 
-    private fun setupRecyclerView() {
+    private fun setDataBindingModels()
+    {
+        binding.toolbarSearch.listener = this
+    }
+
+    private fun setupRecyclerView()
+    {
         if (context == null) return
         binding.recyclerViewSearch.apply {
             layoutManager = WrapContentLinearLayoutManager(context)
-//            adapter = _adapter
+            adapter = _adapter
             setHasFixedSize(true)
             setItemViewCacheSize(20)
         }
@@ -93,11 +105,8 @@ class SearchFragment : Fragment()
     {
         viewModel.locationResponses.observe(viewLifecycleOwner, Observer {
             Log.d(TAG, "onViewCreated: LocationResponses: $it")
-//            _adapter.update(it)
-//            binding.constraintLayoutSearchRoot.visibility =
-//                if (it.isEmpty()) View.VISIBLE else View.GONE
-//            binding.recyclerViewSearchResults.visibility =
-//                if (it.isEmpty()) View.GONE else View.VISIBLE
+            _adapter.update(it)
+            updateNoResultVisibility(it)
         })
         viewModel.loading.observe(viewLifecycleOwner, Observer {
             binding.progressBarSearch.visibility = if (it) View.VISIBLE else View.GONE
@@ -107,10 +116,27 @@ class SearchFragment : Fragment()
         })
     }
 
+    private fun updateNoResultVisibility(it: List<LocationResponse>)
+    {
+        if (it.isEmpty())
+            binding.textViewSearchNoResult.visibility = View.VISIBLE
+        else
+            binding.textViewSearchNoResult.visibility = View.GONE
+    }
+
+    override fun onClearEditText()
+    {
+        binding.toolbarSearch.editTextSearchToolbarQuery.setText("")
+    }
 
     override fun onDestroyView()
     {
         super.onDestroyView()
         _binding = null
     }
+}
+
+interface SearchFragmentListener
+{
+    fun onClearEditText()
 }

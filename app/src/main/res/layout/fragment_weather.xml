@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
     
     <data>
-    
-        <import type="android.view.View" />
         
         <variable
             name="listener"
@@ -27,8 +25,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    
-    
+        
+        
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_search"
             android:layout_width="wrap_content"
@@ -36,11 +34,11 @@
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
-            android:onClick="@{() -> listener.onSearch()}"
-            app:srcCompat="@android:drawable/ic_menu_search"
             android:contentDescription="@string/add_new_location"
+            android:onClick="@{() -> listener.onSearch()}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
-        
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_search" />
+    
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
