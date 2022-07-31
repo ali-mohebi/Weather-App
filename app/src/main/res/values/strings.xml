@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    
+    <string name="clear_text">clear text</string>
+    <string name="search">search</string>
+    <string name="search_fragment">Search Fragment</string>
+    <string name="weather_fragment">Weather Fragment</string>
+    <string name="add_new_location">Add new location</string>
+    <string name="error_fetching_weather">Error fetching weather</string>
+    <string name="error_fetching_locations">Error fetching locations</string>
+    <string name="oops_something_went_wrong_while_loading">Oops something went wrong while Loading</string>
+</resources>

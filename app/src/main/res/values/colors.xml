@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <color name="pink">#c8017b</color>
+    <color name="peacock_blue">#0055a4</color>
+    <color name="cerulean">#009dcc</color>
+    <color name="reddish_orange">#ea5b0f</color>
+    <color name="light_blue_grey">#cdd9dd</color>
+    <color name="dark_grey">#353738</color>
+    <color name="marigold">#ffca00</color>
+    <color name="pastel_red">#e2615b</color>
+    <color name="light_grey">#afb1b2</color>
+    <color name="colorGrayBottomNavIconTint">#DADADA</color>
+    <color name="colorGrayContactPhotoTint">#33000000</color>
+    <color name="leafy_green">#56af3a</color>
+    <color name="tangerine">#ff9600</color>
+    <color name="greenish_teal">#32bea6</color>
+    <color name="pale_grey">#edf2f4</color>
+</resources>
