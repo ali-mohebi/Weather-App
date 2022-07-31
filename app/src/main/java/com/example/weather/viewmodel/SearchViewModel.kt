@@ -3,7 +3,7 @@ package com.example.weather.viewmodel
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.example.weather.interactor.SearchInteractions
+import com.example.weather.interactor.SearchInteractor
 import com.example.weather.model.LocationResponse
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -11,7 +11,7 @@ import io.reactivex.schedulers.Schedulers
 
 class SearchViewModel(application: Application) : AndroidViewModel(application)
 {
-    private val searchInteractions = SearchInteractions()
+    private val searchInteractor = SearchInteractor()
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     val loading = MutableLiveData(false)
@@ -22,7 +22,7 @@ class SearchViewModel(application: Application) : AndroidViewModel(application)
     {
         loading.value = true
         disposables.add(
-            searchInteractions.fetchLocations(city)
+            searchInteractor.fetchLocations(city)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { loading.value = true }

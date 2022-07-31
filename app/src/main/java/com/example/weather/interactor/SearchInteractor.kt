@@ -4,7 +4,7 @@ import com.example.weather.model.LocationResponse
 import com.example.weather.model.repsitory.LocationRepository
 import io.reactivex.Single
 
-class SearchInteractions
+class SearchInteractor
 {
     fun fetchLocations(city: String): Single<List<LocationResponse>>
     {

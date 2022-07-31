@@ -5,7 +5,7 @@ import com.example.weather.model.repsitory.WeatherRepository
 import io.reactivex.Single
 
 
-class WeatherInteractions
+class WeatherInteractor
 {
     private val repository: WeatherRepository by lazy { WeatherRepository() }
     fun fetchWeather(latitude: Double, longitude: Double): Single<WeatherResponse>
