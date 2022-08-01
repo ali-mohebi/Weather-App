@@ -3,7 +3,7 @@ package com.example.weather.utils
 import android.content.Context
 import android.location.Address
 import android.location.Geocoder
-import com.example.weather.model.Coordination
+import com.example.weather.model.repository.remote.Coordination
 import com.google.android.gms.maps.model.LatLng
 import java.io.IOException
 

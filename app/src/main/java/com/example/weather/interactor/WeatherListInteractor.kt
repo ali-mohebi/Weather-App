@@ -8,18 +8,12 @@ import com.example.weather.model.repository.remote.LocationResponse
 import io.reactivex.Single
 
 
-class WeatherInteractor
+class WeatherListInteractor
 {
     private val repository: WeatherRepository by lazy { WeatherRepository() }
-    fun fetchWeather(locationResponse: LocationResponse): Single<WeatherResponse>
-    {
-        return repository.fetchWeatherFromRemote(locationResponse.latitude!!, locationResponse.longitude!!)
-    }
 
-    suspend fun save(weatherResponse: WeatherResponse?, context: Context)
+    suspend fun fetchWeatherList(context: Context): List<WeatherResponse>
     {
-        if (weatherResponse == null) return
-        val dao = WeatherDatabase(context).weatherDao()
-        dao.insert(weatherResponse)
+        return repository.fetchWeatherListFromDatabase(context)
     }
 }

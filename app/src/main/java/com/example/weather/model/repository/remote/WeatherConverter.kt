@@ -1,4 +1,4 @@
-package com.example.weather.model
+package com.example.weather.model.repository.remote
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

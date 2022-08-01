@@ -9,7 +9,7 @@
             type="com.example.weather.view.SearchFragmentListener" />
     </data>
     
-    <androidx.appcompat.widget.Toolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -43,8 +43,8 @@
             
             <ImageButton
                 android:id="@+id/imageView_searchToolbar_cancelSearch"
-                android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_width="12dp"
+                android:layout_height="12dp"
                 android:layout_marginEnd="18dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/clear_text"
@@ -57,5 +57,5 @@
         
         </androidx.constraintlayout.widget.ConstraintLayout>
     
-    </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.MaterialToolbar>
 </layout>

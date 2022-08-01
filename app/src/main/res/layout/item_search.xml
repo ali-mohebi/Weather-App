@@ -7,7 +7,7 @@
         
         <variable
             name="model"
-            type="com.example.weather.model.LocationResponse" />
+            type="com.example.weather.model.repository.remote.LocationResponse" />
         
         <variable
             name="listener"
@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
             
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView_searchItem_city"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 android:textStyle="bold"
                 tools:text="London" />
             
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView_searchItem_country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
                 android:textStyle="bold"
                 tools:text="GB, England" />
             
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textView_searchItem_latLong"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

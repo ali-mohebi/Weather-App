@@ -68,6 +68,10 @@ dependencies {
 
     //Glide
     implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+
+    //Swipe refresh layout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
     //Hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
@@ -75,6 +79,10 @@ dependencies {
 
     // circle image view
     implementation "de.hdodenhof:circleimageview:$circleImageViewVersion"
+
+    //Coroutine
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutineVersion")
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

@@ -1,4 +1,4 @@
-package com.example.weather.model
+package com.example.weather.model.repository.remote
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
@@ -6,8 +6,8 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
-
 
 const val WEATHER_TABLE_NAME = "weathers"
 
@@ -28,6 +28,10 @@ data class WeatherResponse(
 
     @SerializedName("visibility")
     val visibility: Long?,
+
+    @SerializedName("wind")
+    @Embedded(prefix = "wind_")
+    val wind: Wind?,
 
     @SerializedName("clouds")
     @Embedded(prefix = "clouds_")
@@ -53,10 +57,12 @@ data class WeatherResponse(
     @SerializedName("timezone")
     val timezone: String?,
 
+    @SerializedName("name")
     val cityName: String?
 
 ) : Parcelable
 {
+    @IgnoredOnParcel
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0
 }
@@ -91,6 +97,12 @@ data class TemperatureDetails(
     @SerializedName("temp")
     val temperature: Double?,
 
+    @SerializedName("humidity")
+    val humidity: Int?,
+
+    @SerializedName("pressure")
+    val atmosphericPressure: Int?,
+
     @ColumnInfo(name = "feels_like")
     @SerializedName("feels_like")
     val feelsLike: Double?,
@@ -108,6 +120,16 @@ data class TemperatureDetails(
 data class SystemDetails(
     @SerializedName("country")
     val countryCode: String?
+) : Parcelable
+
+@Parcelize
+data class Wind(
+    val speed: Double?,
+
+    @SerializedName("deg")
+    val degree: Int?,
+
+    val gust: Double?,
 ) : Parcelable
 
 @Parcelize

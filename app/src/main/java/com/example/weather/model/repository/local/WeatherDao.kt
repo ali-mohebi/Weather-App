@@ -1,16 +1,16 @@
-package com.example.weather.model.repsitory.local
+package com.example.weather.model.repository.local
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.weather.model.WEATHER_TABLE_NAME
-import com.example.weather.model.WeatherResponse
+import com.example.weather.model.repository.remote.WEATHER_TABLE_NAME
+import com.example.weather.model.repository.remote.WeatherResponse
 
 @Dao
 interface WeatherDao {
 
     @Insert
-    suspend fun insertAll(weather: WeatherResponse): Long
+    suspend fun insert(weather: WeatherResponse): Long
 
     @Query("SELECT * FROM $WEATHER_TABLE_NAME")
     suspend fun getAllWeathers(): List<WeatherResponse>

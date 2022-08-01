@@ -8,12 +8,11 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.weather.databinding.FragmentSearchBinding
-import com.example.weather.model.LocationResponse
+import com.example.weather.model.repository.remote.LocationResponse
 import com.example.weather.utils.KeyboardManager
 import com.example.weather.utils.TAG
 import com.example.weather.utils.WrapContentLinearLayoutManager
@@ -103,17 +102,17 @@ class SearchFragment : Fragment(), SearchFragmentListener
 
     private fun observeViewModels()
     {
-        viewModel.locationResponses.observe(viewLifecycleOwner, Observer {
+        viewModel.locationResponses.observe(viewLifecycleOwner) {
             Log.d(TAG, "onViewCreated: LocationResponses: $it")
             _adapter.update(it)
             updateNoResultVisibility(it)
-        })
-        viewModel.loading.observe(viewLifecycleOwner, Observer {
+        }
+        viewModel.loading.observe(viewLifecycleOwner) {
             binding.progressBarSearch.visibility = if (it) View.VISIBLE else View.GONE
-        })
-        viewModel.loadingError.observe(viewLifecycleOwner, Observer {
+        }
+        viewModel.loadingError.observe(viewLifecycleOwner) {
             binding.textViewSearchError.visibility = if (it) View.VISIBLE else View.GONE
-        })
+        }
     }
 
     private fun updateNoResultVisibility(it: List<LocationResponse>)

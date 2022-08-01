@@ -5,17 +5,25 @@
       <map>
         <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/drawable-v24/ic_baseline_close.xml" value="0.1715" />
         <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/drawable-v24/ic_search_clear.xml" value="0.1455" />
+        <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/drawable/background_weather_gradient.xml" value="0.1455" />
+        <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/drawable/baseline_error_outline_black_24dp.xml" value="0.1455" />
+        <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/drawable/gradient_backgroun.xml" value="0.1455" />
+        <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/drawable/ic_weather_humidity.xml" value="0.1455" />
         <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/drawable/ic_weather_search.xml" value="0.1715" />
+        <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/drawable/ic_weather_temperature.xml" value="0.1455" />
+        <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/drawable/ic_weather_wind.xml" value="0.1455" />
         <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/layout/activity_main.xml" value="0.13541666666666666" />
         <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/layout/content_main.xml" value="0.13541666666666666" />
         <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_first.xml" value="0.13541666666666666" />
         <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_search.xml" value="0.2" />
         <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_second.xml" value="0.13541666666666666" />
         <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather.xml" value="0.13541666666666666" />
-        <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather_details.xml" value="0.13541666666666666" />
+        <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/layout/fragment_weather_details.xml" value="0.152" />
         <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/layout/item_search.xml" value="0.2353846153846154" />
+        <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/layout/layout_toolbar_common.xml" value="0.22870370370370371" />
         <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/layout/layout_toolbar_search.xml" value="0.264" />
         <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/layout/layout_toolbar_weather.xml" value="0.13541666666666666" />
+        <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/layout/layout_toolbar_weather_details.xml" value="0.22870370370370371" />
         <entry key="..\:/Users/mrmbf/AndroidStudioProjects/Weather/app/src/main/res/menu/menu_main.xml" value="0.24010416666666667" />
       </map>
     </option>

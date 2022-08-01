@@ -1,7 +1,7 @@
-package com.example.weather.model.repsitory
+package com.example.weather.model.repository
 
-import com.example.weather.model.LocationResponse
-import com.example.weather.model.repsitory.remote.LocationService
+import com.example.weather.model.repository.remote.LocationResponse
+import com.example.weather.model.repository.remote.LocationService
 import io.reactivex.Single
 
 class LocationRepository

@@ -9,7 +9,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weather.R
 import com.example.weather.databinding.ItemSearchBinding
-import com.example.weather.model.LocationResponse
+import com.example.weather.model.repository.remote.LocationResponse
 import com.example.weather.utils.TAG
 
 class SearchAdapter(private val dataSet: ArrayList<LocationResponse>) :

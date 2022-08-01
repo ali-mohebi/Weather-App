@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/WeatherFragment"
-        android:name="com.example.weather.view.WeatherFragment"
-        android:label="@string/weather_fragment"
-        tools:layout="@layout/fragment_weather">
+        android:name="com.example.weather.view.WeatherListFragment"
+        android:label="@string/weather"
+        tools:layout="@layout/fragment_weather_list">
 
         <action
             android:id="@+id/to_SearchFragment"
@@ -32,14 +32,13 @@
     <fragment
         android:id="@+id/weatherDetailsFragment"
         android:name="com.example.weather.view.WeatherDetailsFragment"
-        android:label="WeatherDetailsFragment"
+        android:label="@string/weather_details"
         tools:layout="@layout/fragment_weather_details">
         
         <argument
             android:name="locationResponse"
-            android:defaultValue="@null"
-            app:argType="com.example.weather.model.LocationResponse"
-            app:nullable="true" />
+            app:argType="com.example.weather.model.repository.remote.LocationResponse"
+            app:nullable="false" />
         
     </fragment>
 

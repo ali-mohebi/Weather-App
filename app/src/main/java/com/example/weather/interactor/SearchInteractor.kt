@@ -1,7 +1,7 @@
 package com.example.weather.interactor
 
-import com.example.weather.model.LocationResponse
-import com.example.weather.model.repsitory.LocationRepository
+import com.example.weather.model.repository.remote.LocationResponse
+import com.example.weather.model.repository.LocationRepository
 import io.reactivex.Single
 
 class SearchInteractor

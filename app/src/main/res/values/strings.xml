@@ -17,4 +17,11 @@
     <string name="oops_something_went_wrong_while_loading">Oops something went wrong while Loading</string>
     <string name="oops_no_result_found_try_again">Oops, no result found! Try Again :)</string>
     <string name="search_location">search location</string>
+    <string name="weather">Weather</string>
+    <string name="weather_details">Weather Details</string>
+    <string name="save">Save</string>
+    <string name="save_city">Save City</string>
+    <string name="wind">Wind</string>
+    <string name="temperature">Temperature</string>
+    <string name="humidity">Humidity</string>
 </resources>

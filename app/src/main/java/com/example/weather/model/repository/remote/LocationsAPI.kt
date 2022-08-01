@@ -1,6 +1,5 @@
-package com.example.weather.model.repsitory.remote
+package com.example.weather.model.repository.remote
 
-import com.example.weather.model.LocationResponse
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

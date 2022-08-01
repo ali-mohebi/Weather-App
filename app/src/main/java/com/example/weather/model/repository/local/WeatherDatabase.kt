@@ -1,12 +1,12 @@
-package com.example.weather.model.repsitory.local
+package com.example.weather.model.repository.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.weather.model.WeatherConverter
-import com.example.weather.model.WeatherResponse
+import com.example.weather.model.repository.remote.WeatherConverter
+import com.example.weather.model.repository.remote.WeatherResponse
 
 @Database(entities = [WeatherResponse::class], version = 1)
 @TypeConverters(WeatherConverter::class)
