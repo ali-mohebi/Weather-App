@@ -25,6 +25,11 @@ class WeatherListViewModel(application: Application) : AndroidViewModel(applicat
     fun fetchWeatherList()
     {
         loading.value = true
+        load()
+    }
+
+    private fun load()
+    {
         viewModelScope.launch(Dispatchers.IO) {
             val list = weatherListInteractor.fetchWeatherList(getApplication())
             weatherList.postValue(list)
@@ -87,5 +92,11 @@ class WeatherListViewModel(application: Application) : AndroidViewModel(applicat
     public override fun onCleared()
     {
         disposables.clear()
+    }
+
+    fun onNetworkConnected()
+    {
+        if(loading.value == false)
+            load()
     }
 }

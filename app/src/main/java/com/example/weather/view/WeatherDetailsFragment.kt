@@ -1,5 +1,7 @@
 package com.example.weather.view
 
+import android.net.ConnectivityManager
+import android.net.Network
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.weather.databinding.FragmentWeatherDetailsBinding
 import com.example.weather.model.WeatherModel
 import com.example.weather.model.repository.remote.LocationResponse
+import com.example.weather.utils.ConnectionServiceHelper
 import com.example.weather.utils.TAG
 import com.example.weather.viewmodel.WeatherDetailsViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -28,6 +31,17 @@ class WeatherDetailsFragment : Fragment(), WeatherDetailsFragmentListener
 
     private val args: WeatherDetailsFragmentArgs by navArgs()
 
+    private val networkCallback = object : ConnectivityManager.NetworkCallback()
+    {
+        // network is available for use
+        override fun onAvailable(network: Network)
+        {
+            super.onAvailable(network)
+            val locationResponse = args.locationResponse
+            viewModel.onNetworkConnected(locationResponse)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,10 +54,16 @@ class WeatherDetailsFragment : Fragment(), WeatherDetailsFragmentListener
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
+        createConnectionService()
         setActionUp()
         setDataBindingModels()
         observeViewModels()
         maybeFetchWeather()
+    }
+
+    private fun createConnectionService()
+    {
+        ConnectionServiceHelper().createConnectionService(context, networkCallback)
     }
 
     private fun maybeFetchWeather()
@@ -95,8 +115,11 @@ class WeatherDetailsFragment : Fragment(), WeatherDetailsFragmentListener
 
     private fun updateLoadingError(isError: Boolean)
     {
-        binding.textViewWeatherDetailsError.visibility =
-            if (isError) View.VISIBLE else View.GONE
+        binding.textViewWeatherDetailsError.visibility = if (isError) View.VISIBLE else View.GONE
+        binding.imageViewWeatherDetailsLocationIcon.visibility =
+            if (isError) View.GONE else View.VISIBLE
+        binding.linearLayoutWeatherDetailsWeatherDetailsRoot.visibility =
+            if (isError) View.GONE else View.VISIBLE
     }
 
     private fun showSaveResult(isSuccessful: Boolean)

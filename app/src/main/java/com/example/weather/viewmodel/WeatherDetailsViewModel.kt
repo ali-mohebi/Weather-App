@@ -26,18 +26,22 @@ class WeatherDetailsViewModel(application: Application) : AndroidViewModel(appli
     fun fetchWeather(locationResponse: LocationResponse)
     {
         loading.value = true
+        load(locationResponse)
+    }
+
+    private fun load(locationResponse: LocationResponse)
+    {
         disposables.add(
             weatherInteractor.fetchWeather(locationResponse)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { loading.value = true }
-                .doAfterTerminate { loading.value = false }
                 .subscribe({
                     loading.postValue(false)
-                    weatherResponse.value = it
+                    loadingError.postValue(false)
+                    weatherResponse.postValue(it)
                 }, {
                     loading.postValue(false)
-                    loadingError.value = true
+                    loadingError.postValue(true)
                     it.printStackTrace()
                 })
         )
@@ -52,6 +56,12 @@ class WeatherDetailsViewModel(application: Application) : AndroidViewModel(appli
             loading.postValue(false)
             savedToDatabase.postValue(true)
         }
+    }
+
+    fun onNetworkConnected(locationResponse: LocationResponse?)
+    {
+        if(loading.value == false && locationResponse != null)
+            load(locationResponse)
     }
 
     public override fun onCleared()

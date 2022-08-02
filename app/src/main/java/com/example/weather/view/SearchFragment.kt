@@ -111,6 +111,8 @@ class SearchFragment : Fragment(), SearchFragmentListener
         }
         viewModel.loadingError.observe(viewLifecycleOwner) {
             binding.textViewSearchError.visibility = if (it) View.VISIBLE else View.GONE
+            if(it)
+                _adapter.update(arrayListOf())
         }
     }
 

@@ -1,15 +1,21 @@
 package com.example.weather.view
 
+import android.net.ConnectivityManager
+import android.net.Network
+import android.net.NetworkCapabilities
+import android.net.NetworkRequest
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.weather.databinding.FragmentWeatherListBinding
 import com.example.weather.model.repository.remote.WeatherResponse
+import com.example.weather.utils.ConnectionServiceHelper
 import com.example.weather.utils.WrapContentLinearLayoutManager
 import com.example.weather.viewmodel.WeatherListViewModel
 
@@ -22,6 +28,15 @@ class WeatherListFragment : Fragment(), WeatherListFragmentListener, WeatherItem
     private val viewModel: WeatherListViewModel by viewModels()
     private val _adapter = WeatherAdapter(arrayListOf(), this)
 
+    private val networkCallback = object : ConnectivityManager.NetworkCallback()
+    {
+        // network is available for use
+        override fun onAvailable(network: Network)
+        {
+            super.onAvailable(network)
+            viewModel.onNetworkConnected()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,10 +55,16 @@ class WeatherListFragment : Fragment(), WeatherListFragmentListener, WeatherItem
 
     private fun init()
     {
+        createConnectionService()
         setDataBindingModels()
         setupRecyclerView()
         observeViewModels()
         fetchWeathers()
+    }
+
+    private fun createConnectionService()
+    {
+        ConnectionServiceHelper().createConnectionService(context, networkCallback)
     }
 
     private fun setDataBindingModels()

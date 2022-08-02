@@ -14,7 +14,7 @@
     <string name="add_new_location">Add new location</string>
     <string name="error_fetching_weather">Error fetching weather</string>
     <string name="error_fetching_locations">Error fetching locations</string>
-    <string name="oops_something_went_wrong_while_loading">Oops something went wrong while Loading</string>
+    <string name="oops_something_went_wrong_while_loading">Oops something went wrong while Loading!</string>
     <string name="oops_no_result_found_try_again">Oops, no result found! Try Again :)</string>
     <string name="search_location">search location</string>
     <string name="weather">Weather</string>
