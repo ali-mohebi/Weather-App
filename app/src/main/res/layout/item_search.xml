@@ -39,10 +39,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                android:fontFamily="sans-serif-medium"
                 android:maxLines="1"
                 android:text="@{model.city}"
-                android:textColor="@color/dark_grey"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 tools:text="London" />
@@ -53,10 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                android:fontFamily="sans-serif-medium"
                 android:maxLines="1"
                 android:text="@{model.fullCountry}"
-                android:textColor="@color/dark_grey"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 tools:text="GB, England" />
@@ -68,10 +64,8 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="12dp"
-                android:fontFamily="sans-serif-medium"
                 android:maxLines="1"
                 android:text="@{model.geoLocation}"
-                android:textColor="@color/dark_grey"
                 android:textSize="12sp"
                 android:textStyle="normal"
                 tools:text="geo location: 35.5, 65.6" />

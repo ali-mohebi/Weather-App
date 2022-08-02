@@ -12,10 +12,11 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.example.weather.databinding.FragmentWeatherDetailsBinding
-import com.example.weather.model.repository.remote.LocationResponse
 import com.example.weather.model.WeatherModel
+import com.example.weather.model.repository.remote.LocationResponse
 import com.example.weather.utils.TAG
 import com.example.weather.viewmodel.WeatherDetailsViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class WeatherDetailsFragment : Fragment(), WeatherDetailsFragmentListener
 {
@@ -42,26 +43,22 @@ class WeatherDetailsFragment : Fragment(), WeatherDetailsFragmentListener
         setActionUp()
         setDataBindingModels()
         observeViewModels()
-        maybeFetchWeather(args.locationResponse)
+        maybeFetchWeather()
     }
 
-    private fun maybeFetchWeather(locationResponse: LocationResponse)
+    private fun maybeFetchWeather()
     {
-        if (isValid(locationResponse))
-            viewModel.fetchWeather(locationResponse)
+        if (isLocationValid(args.locationResponse))
+            args.locationResponse?.let { viewModel.fetchWeather(it) }
         else
-            updateLoadingError(true)
+            binding.model = WeatherModel(args.weatherResponse!!)
     }
 
-    private fun isValid(locationResponse: LocationResponse): Boolean
+    private fun isLocationValid(locationResponse: LocationResponse?): Boolean
     {
+        if (locationResponse == null) return false
         if (locationResponse.latitude == null || locationResponse.longitude == null) return false
         return true
-    }
-
-    private fun updateLoadingError(errorOccurred: Boolean)
-    {
-        binding.textViewWeatherDetailsError.visibility = if (errorOccurred) View.VISIBLE else View.GONE
     }
 
     private fun setActionUp()
@@ -73,7 +70,6 @@ class WeatherDetailsFragment : Fragment(), WeatherDetailsFragmentListener
             appBarConfiguration
         )
     }
-
 
     private fun setDataBindingModels()
     {
@@ -92,6 +88,27 @@ class WeatherDetailsFragment : Fragment(), WeatherDetailsFragmentListener
         viewModel.loadingError.observe(viewLifecycleOwner) {
             updateLoadingError(it)
         }
+        viewModel.savedToDatabase.observe(viewLifecycleOwner) {
+            showSaveResult(it)
+        }
+    }
+
+    private fun updateLoadingError(isError: Boolean)
+    {
+        binding.textViewWeatherDetailsError.visibility =
+            if (isError) View.VISIBLE else View.GONE
+    }
+
+    private fun showSaveResult(isSuccessful: Boolean)
+    {
+        val message = if (isSuccessful)
+            "Saved successfully"
+        else
+            "Error saving"
+
+        Snackbar.make(binding.buttonWeatherDetailsSave, message, Snackbar.LENGTH_SHORT)
+            .setAnchorView(binding.buttonWeatherDetailsSave)
+            .show()
     }
 
     override fun onDestroyView()

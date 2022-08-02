@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/WeatherFragment">
-
+    
     <fragment
         android:id="@+id/WeatherFragment"
         android:name="com.example.weather.view.WeatherListFragment"
         android:label="@string/weather"
         tools:layout="@layout/fragment_weather_list">
-
+        
         <action
             android:id="@+id/to_SearchFragment"
             app:destination="@id/SearchFragment" />
@@ -23,7 +23,7 @@
         android:name="com.example.weather.view.SearchFragment"
         android:label="@string/search_fragment"
         tools:layout="@layout/fragment_search">
-    
+        
         <action
             android:id="@+id/to_weatherDetailsFragment"
             app:destination="@id/weatherDetailsFragment" />
@@ -37,9 +37,16 @@
         
         <argument
             android:name="locationResponse"
+            android:defaultValue="@null"
             app:argType="com.example.weather.model.repository.remote.LocationResponse"
-            app:nullable="false" />
+            app:nullable="true" />
         
+        <argument
+            android:name="weatherResponse"
+            android:defaultValue="@null"
+            app:argType="com.example.weather.model.repository.remote.WeatherResponse"
+            app:nullable="true" />
+    
     </fragment>
 
 

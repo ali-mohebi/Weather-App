@@ -1,7 +1,6 @@
 package com.example.weather.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.weather.databinding.FragmentWeatherListBinding
-import com.example.weather.model.WeatherModel
-import com.example.weather.utils.TAG
+import com.example.weather.utils.WrapContentLinearLayoutManager
 import com.example.weather.viewmodel.WeatherListViewModel
 
 class WeatherListFragment : Fragment(), WeatherListFragmentListener
@@ -20,6 +18,8 @@ class WeatherListFragment : Fragment(), WeatherListFragmentListener
     private val binding get() = _binding!!
 
     private val viewModel: WeatherListViewModel by viewModels()
+    private val _adapter = WeatherAdapter(arrayListOf())
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +39,7 @@ class WeatherListFragment : Fragment(), WeatherListFragmentListener
     private fun init()
     {
         setDataBindingModels()
+        setupRecyclerView()
         observeViewModels()
         fetchWeathers()
     }
@@ -48,22 +49,35 @@ class WeatherListFragment : Fragment(), WeatherListFragmentListener
         binding.listener = this
     }
 
+    private fun setupRecyclerView()
+    {
+        if (context == null) return
+        binding.recyclerViewSearch.apply {
+            layoutManager = WrapContentLinearLayoutManager(context)
+            adapter = _adapter
+            setHasFixedSize(true)
+            setItemViewCacheSize(20)
+        }
+    }
+
     private fun observeViewModels()
     {
         viewModel.weatherList.observe(viewLifecycleOwner) {
-            Log.d(TAG, "observeViewModels: weatherList: $it")
-            Log.d(TAG, "observeViewModels: weatherList size: ${it.size}")
-//            binding.model = WeatherModel(it)
+            _adapter.update(it)
+            updateEmptyList(it.isEmpty())
         }
-//        viewModel.loading.observe(viewLifecycleOwner) {
-//            binding.progressBarWeatherDetails.visibility = if (it) View.VISIBLE else View.GONE
-//        }
-//        viewModel.loadingError.observe(viewLifecycleOwner) {
-//            updateLoadingError(it)
-//        }
+        viewModel.loading.observe(viewLifecycleOwner) {
+            binding.progressBarWeatherList.visibility = if (it) View.VISIBLE else View.GONE
+        }
     }
 
-    private fun fetchWeathers(){
+    private fun updateEmptyList(isEmpty: Boolean)
+    {
+        binding.textViewWeatherListEmptyList.visibility = if (isEmpty) View.VISIBLE else View.GONE
+    }
+
+    private fun fetchWeathers()
+    {
         viewModel.fetchWeatherList()
     }
 

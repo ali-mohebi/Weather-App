@@ -20,7 +20,6 @@ class WeatherListViewModel(application: Application) : AndroidViewModel(applicat
     private val disposables: CompositeDisposable = CompositeDisposable()
 
     val loading = MutableLiveData(false)
-    val loadingError = MutableLiveData(false)
     val weatherList = MutableLiveData<List<WeatherResponse>>()
 
     fun fetchWeatherList()

@@ -47,5 +47,33 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@android:drawable/ic_menu_search" />
     
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView_weatherList_emptyList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:gravity="center"
+            android:text="@string/there_are_no_cities_cached_feel_free_to_add_some_here"
+            android:textStyle="bold"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/there_are_no_cities_cached_feel_free_to_add_some_here"
+            tools:visibility="visible" />
+        
+        
+        <ProgressBar
+            android:id="@+id/progressBar_weatherList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -35,6 +35,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar_weatherDetails"
             tools:src="@drawable/ic_weather_loading_error" />
+    
+    
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView_weatherDetails_weatherTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="12dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:text="@{model.weatherTitle}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView_weatherDetails_weatherIcon"
+            tools:text="Clouds, broken clouds" />
         
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView_weatherDetails_locationIcon"
@@ -43,14 +58,15 @@
             android:layout_marginTop="12dp"
             android:src="@drawable/ic_baseline_location"
             app:layout_constraintStart_toStartOf="@id/imageView_weatherDetails_weatherIcon"
-            app:layout_constraintTop_toBottomOf="@id/imageView_weatherDetails_weatherIcon" />
+            app:layout_constraintEnd_toStartOf="@id/textView_weatherDetails_location"
+            app:layout_constraintTop_toBottomOf="@id/textView_weatherDetails_weatherTitle" />
         
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView_weatherDetails_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="@{model.cityCountry}"
+            android:text="@{model.location}"
             app:layout_constraintBottom_toBottomOf="@id/imageView_weatherDetails_locationIcon"
             app:layout_constraintStart_toEndOf="@id/imageView_weatherDetails_locationIcon"
             app:layout_constraintTop_toTopOf="@id/imageView_weatherDetails_locationIcon"
@@ -220,6 +236,7 @@
         
         
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_weatherDetails_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -235,7 +252,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            android:fontFamily="sans-serif-medium"
             android:gravity="center"
             android:maxLines="1"
             android:text="@string/oops_something_went_wrong_while_loading"

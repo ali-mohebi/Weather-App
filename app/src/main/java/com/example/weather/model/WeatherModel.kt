@@ -4,13 +4,6 @@ import com.example.weather.model.repository.remote.WeatherResponse
 
 class WeatherModel(val weatherResponse: WeatherResponse)
 {
-    override fun equals(other: Any?): Boolean
-    {
-        if (other !is WeatherResponse)
-            return false
-        return weatherResponse.cityId == other.cityId
-    }
-
     fun weatherIconUrl(): String?
     {
         return weatherResponse.weatherList?.get(0)?.iconId
@@ -21,7 +14,7 @@ class WeatherModel(val weatherResponse: WeatherResponse)
         return String.format("%.0f", weatherResponse.temperatureDetails?.temperature) + "°"
     }
 
-    fun getCityCountry(): String
+    fun getLocation(): String
     {
         return "${weatherResponse.cityName}, ${weatherResponse.systemDetails?.countryCode}"
     }
@@ -34,5 +27,11 @@ class WeatherModel(val weatherResponse: WeatherResponse)
     fun getHumidity(): String
     {
         return weatherResponse.temperatureDetails?.humidity.toString() + "%"
+    }
+
+    fun getWeatherTitle(): String
+    {
+        return weatherResponse.weatherList?.get(0)?.name + ", " +
+                weatherResponse.weatherList?.get(0)?.description
     }
 }

@@ -103,7 +103,6 @@ class SearchFragment : Fragment(), SearchFragmentListener
     private fun observeViewModels()
     {
         viewModel.locationResponses.observe(viewLifecycleOwner) {
-            Log.d(TAG, "onViewCreated: LocationResponses: $it")
             _adapter.update(it)
             updateNoResultVisibility(it)
         }

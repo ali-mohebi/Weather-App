@@ -6,7 +6,6 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 
 const val WEATHER_TABLE_NAME = "weathers"
@@ -16,7 +15,7 @@ const val WEATHER_TABLE_NAME = "weathers"
 data class WeatherResponse(
     @SerializedName("coord")
     @Embedded(prefix = "coordination_")
-    val coordination: Coordination?,
+    val coordination: Coordination,
 
     @SerializedName("weather")
     @ColumnInfo(name = "weather_list")
@@ -49,33 +48,31 @@ data class WeatherResponse(
     @Embedded
     val systemDetails: SystemDetails?,
 
+    @PrimaryKey
     @ColumnInfo(name = "city_id")
     @SerializedName("id")
-    val cityId: String?,
+    val cityId: Int,
 
     @ColumnInfo(name = "timezone")
     @SerializedName("timezone")
     val timezone: String?,
 
     @SerializedName("name")
-    val cityName: String?
+    val cityName: String?,
 
+    @ColumnInfo(name = "last_update")
+    var lastUpdate: Long = 0
 ) : Parcelable
-{
-    @IgnoredOnParcel
-    @PrimaryKey(autoGenerate = true)
-    var uuid: Int = 0
-}
 
 @Parcelize
 data class Coordination(
     @ColumnInfo(name = "latitude")
     @SerializedName("lat")
-    val latitude: Double?,
+    val latitude: Double,
 
     @ColumnInfo(name = "longitude")
     @SerializedName("lon")
-    val longitude: Double?
+    val longitude: Double
 ) : Parcelable
 
 @Parcelize

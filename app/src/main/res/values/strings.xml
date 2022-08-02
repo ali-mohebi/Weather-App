@@ -24,4 +24,5 @@
     <string name="wind">Wind</string>
     <string name="temperature">Temperature</string>
     <string name="humidity">Humidity</string>
+    <string name="there_are_no_cities_cached_feel_free_to_add_some_here">There are no cities cached, feel free to add some here :)</string>
 </resources>

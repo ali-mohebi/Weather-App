@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <data>
+        
+        <variable
+            name="model"
+            type="com.example.weather.model.WeatherModel" />
+        
+        <variable
+            name="listener"
+            type="com.example.weather.view.WeatherItemListener" />
+    
+    </data>
+    
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{(view) -> listener.onClick(view, model.weatherResponse)}">
+        
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView_weatherItem_weatherIcon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_margin="12dp"
+            android:imageUrl="@{model.weatherIconUrl}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_weather_loading_error" />
+        
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView_weatherItem_weatherTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:maxLines="1"
+            android:text="@{model.weatherTitle}"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/imageView_weatherItem_weatherIcon"
+            app:layout_constraintTop_toTopOf="@id/imageView_weatherItem_weatherIcon"
+            tools:text="Cloudy, broken clouds" />
+        
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView_weatherItem_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:maxLines="1"
+            android:text="@{model.temperatureWithDegree}"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/imageView_weatherItem_weatherIcon"
+            app:layout_constraintTop_toBottomOf="@id/textView_weatherItem_weatherTitle"
+            tools:text="26°" />
+        
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView_weatherItem_locationIcon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_margin="12dp"
+            android:src="@drawable/ic_baseline_location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageView_weatherItem_weatherIcon" />
+        
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textView_weatherItem_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:maxLines="1"
+            android:text="@{model.location}"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageView_weatherItem_locationIcon"
+            app:layout_constraintTop_toTopOf="@id/imageView_weatherItem_locationIcon"
+            app:layout_constraintBottom_toBottomOf="@id/imageView_weatherItem_locationIcon"
+            tools:text="London, GB" />
+        
+        <View
+            android:id="@+id/view_weatherItem_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="24dp"
+            android:background="@color/colorGrayBottomNavIconTint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView_weatherItem_location" />
+    
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

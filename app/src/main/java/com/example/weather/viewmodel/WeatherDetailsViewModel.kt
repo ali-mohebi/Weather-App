@@ -21,6 +21,7 @@ class WeatherDetailsViewModel(application: Application) : AndroidViewModel(appli
     val loading = MutableLiveData(false)
     val loadingError = MutableLiveData(false)
     val weatherResponse = MutableLiveData<WeatherResponse>()
+    val savedToDatabase = MutableLiveData<Boolean>()
 
     fun fetchWeather(locationResponse: LocationResponse)
     {
@@ -45,9 +46,11 @@ class WeatherDetailsViewModel(application: Application) : AndroidViewModel(appli
     fun save()
     {
         loading.value = true
+        weatherResponse.value?.lastUpdate = System.nanoTime()
         viewModelScope.launch(Dispatchers.IO) {
             weatherInteractor.save(weatherResponse.value, getApplication())
             loading.postValue(false)
+            savedToDatabase.postValue(true)
         }
     }
 
@@ -55,5 +58,4 @@ class WeatherDetailsViewModel(application: Application) : AndroidViewModel(appli
     {
         disposables.clear()
     }
-
 }

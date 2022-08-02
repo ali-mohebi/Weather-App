@@ -1,6 +1,5 @@
 package com.example.weather.view
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weather.R
 import com.example.weather.databinding.ItemSearchBinding
 import com.example.weather.model.repository.remote.LocationResponse
-import com.example.weather.utils.TAG
 
 class SearchAdapter(private val dataSet: ArrayList<LocationResponse>) :
     RecyclerView.Adapter<SearchAdapter.SearchViewHolder>(), SearchItemListener
@@ -18,7 +16,6 @@ class SearchAdapter(private val dataSet: ArrayList<LocationResponse>) :
 
     fun update(list: List<LocationResponse>)
     {
-        Log.d(TAG, "update: started")
         dataSet.clear()
         dataSet.addAll(list)
         notifyDataSetChanged()
@@ -51,7 +48,7 @@ class SearchAdapter(private val dataSet: ArrayList<LocationResponse>) :
 
     override fun onClick(view: View, locationResponse: LocationResponse)
     {
-        val directions = SearchFragmentDirections.toWeatherDetailsFragment(locationResponse)
+        val directions = SearchFragmentDirections.toWeatherDetailsFragment(locationResponse = locationResponse)
         view.findNavController().navigate(directions)
     }
 }

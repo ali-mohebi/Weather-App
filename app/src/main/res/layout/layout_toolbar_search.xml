@@ -13,7 +13,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/light_grey"
+        android:background="@color/design_default_color_primary"
         android:elevation="4dp"
         app:title="@string/search">
         
@@ -27,9 +27,9 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_margin="8dp"
-                android:background="@null"
-                android:fontFamily="sans-serif-medium"
                 android:hint="@string/search_location"
+                android:textColorHint="@color/light_grey"
+                android:textColor="@color/white"
                 android:imeOptions="actionSearch"
                 android:importantForAutofill="no"
                 android:inputType="text"
@@ -52,8 +52,7 @@
                 android:src="@drawable/ic_search_clear"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tint="?attr/colorAccent" />
+                app:layout_constraintTop_toTopOf="parent" />
         
         </androidx.constraintlayout.widget.ConstraintLayout>
     
