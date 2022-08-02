@@ -4,16 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weather.R
 import com.example.weather.databinding.ItemWeatherBinding
 import com.example.weather.model.WeatherModel
-import com.example.weather.model.repository.remote.LocationResponse
 import com.example.weather.model.repository.remote.WeatherResponse
 
-class WeatherAdapter(private val dataSet: ArrayList<WeatherResponse>) :
-    RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>(), WeatherItemListener
+class WeatherAdapter(
+    private val dataSet: ArrayList<WeatherResponse>,
+    private val listener: WeatherItemListener
+) :
+    RecyclerView.Adapter<WeatherAdapter.WeatherViewHolder>()
 {
 
     fun update(list: List<WeatherResponse>)
@@ -41,26 +42,35 @@ class WeatherAdapter(private val dataSet: ArrayList<WeatherResponse>) :
     override fun onBindViewHolder(holder: WeatherViewHolder, position: Int)
     {
         holder.view.model = WeatherModel(dataSet[position])
-        holder.view.listener = this
+        holder.view.listener = listener
     }
 
-    override fun getItemCount(): Int
+    fun delete(weatherResponse: WeatherResponse)
     {
-        return dataSet.size
+        deleteAt(getPositionFor(weatherResponse))
     }
+
+    private fun getPositionFor(weatherResponse: WeatherResponse): Int
+    {
+        for ((position, item) in dataSet.withIndex())
+        {
+            if (item.cityId == weatherResponse.cityId)
+                return position
+        }
+        return -1
+    }
+
+    private fun deleteAt(position: Int)
+    {
+        if(position < 0 || position >= itemCount) return
+        dataSet.removeAt(position)
+        notifyItemChanged(position)
+        notifyItemRangeRemoved(position, 1)
+    }
+
+    override fun getItemCount() = dataSet.size
 
     class WeatherViewHolder(var view: ItemWeatherBinding) : RecyclerView.ViewHolder(view.root)
-
-    override fun onClick(view: View, weatherResponse: WeatherResponse)
-    {
-        val directions = WeatherListFragmentDirections.toWeatherDetailsFragment(weatherResponse = weatherResponse)
-        view.findNavController().navigate(directions)
-    }
-
-    override fun delete(weatherResponse: WeatherResponse)
-    {
-
-    }
 }
 
 interface WeatherItemListener

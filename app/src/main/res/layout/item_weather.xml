@@ -25,10 +25,21 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_margin="12dp"
+            android:onClick="@{() -> listener.delete(model.weatherResponse)}"
             android:imageUrl="@{model.weatherIconUrl}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_weather_loading_error" />
+        
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView_weatherItem_deleteIcon"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:layout_margin="12dp"
+            android:src="@android:drawable/ic_delete"
+            android:onClick="@{() -> listener.delete(model.weatherResponse)}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textView_weatherItem_weatherTitle"

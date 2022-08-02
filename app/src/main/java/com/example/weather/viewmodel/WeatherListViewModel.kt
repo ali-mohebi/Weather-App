@@ -77,6 +77,13 @@ class WeatherListViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
+    fun deleteWeather(weatherResponse: WeatherResponse)
+    {
+        viewModelScope.launch(Dispatchers.IO) {
+            weatherListInteractor.delete(weatherResponse, getApplication())
+        }
+    }
+
     public override fun onCleared()
     {
         disposables.clear()

@@ -26,4 +26,9 @@ class WeatherListInteractor
     {
         repository.save(weatherResponse, context)
     }
+
+    suspend fun delete(weatherResponse: WeatherResponse, context: Context)
+    {
+        repository.delete(weatherResponse, context)
+    }
 }

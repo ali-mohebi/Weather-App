@@ -6,19 +6,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.weather.databinding.FragmentWeatherListBinding
+import com.example.weather.model.repository.remote.WeatherResponse
 import com.example.weather.utils.WrapContentLinearLayoutManager
 import com.example.weather.viewmodel.WeatherListViewModel
 
-class WeatherListFragment : Fragment(), WeatherListFragmentListener
+class WeatherListFragment : Fragment(), WeatherListFragmentListener, WeatherItemListener
 {
 
     private var _binding: FragmentWeatherListBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: WeatherListViewModel by viewModels()
-    private val _adapter = WeatherAdapter(arrayListOf())
+    private val _adapter = WeatherAdapter(arrayListOf(), this)
 
 
     override fun onCreateView(
@@ -90,6 +92,19 @@ class WeatherListFragment : Fragment(), WeatherListFragmentListener
     {
         val direction = WeatherListFragmentDirections.toSearchFragment()
         findNavController().navigate(direction)
+    }
+
+    override fun onClick(view: View, weatherResponse: WeatherResponse)
+    {
+        val directions =
+            WeatherListFragmentDirections.toWeatherDetailsFragment(weatherResponse = weatherResponse)
+        view.findNavController().navigate(directions)
+    }
+
+    override fun delete(weatherResponse: WeatherResponse)
+    {
+        viewModel.deleteWeather(weatherResponse)
+        _adapter.delete(weatherResponse)
     }
 
     override fun onDestroyView()

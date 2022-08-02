@@ -24,4 +24,7 @@ interface WeatherDao {
 
     @Query("DELETE FROM $WEATHER_TABLE_NAME")
     suspend fun deleteAllWeathers()
+
+    @Query("DELETE FROM $WEATHER_TABLE_NAME WHERE city_id = :id")
+    suspend fun delete(id: Int)
 }

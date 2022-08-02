@@ -30,11 +30,9 @@ class WeatherRepository
         dao.insert(weatherResponse)
     }
 
-    suspend fun saveAll(list: List<WeatherResponse>, context: Context)
+    suspend fun delete(weatherResponse: WeatherResponse, context: Context)
     {
         val dao = WeatherDatabase(context).weatherDao()
-        for (item in list)
-            dao.insert(item)
-//        dao.insertAll(*list.toTypedArray())
+        dao.delete(weatherResponse.cityId)
     }
 }

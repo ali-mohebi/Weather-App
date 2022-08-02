@@ -39,10 +39,7 @@ class SearchAdapter(private val dataSet: ArrayList<LocationResponse>) :
         holder.view.listener = this
     }
 
-    override fun getItemCount(): Int
-    {
-        return dataSet.size
-    }
+    override fun getItemCount() = dataSet.size
 
     class SearchViewHolder(var view: ItemSearchBinding) : RecyclerView.ViewHolder(view.root)
 
