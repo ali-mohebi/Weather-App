@@ -25,8 +25,6 @@ class SearchViewModel(application: Application) : AndroidViewModel(application)
             searchInteractor.fetchLocations(city)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { loading.value = true }
-                .doAfterTerminate { loading.value = false }
                 .subscribe({
                     loading.value = false
                     locationResponses.value = it

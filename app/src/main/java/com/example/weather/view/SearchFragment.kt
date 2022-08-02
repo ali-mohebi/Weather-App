@@ -1,7 +1,6 @@
 package com.example.weather.view
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.weather.databinding.FragmentSearchBinding
 import com.example.weather.model.repository.remote.LocationResponse
 import com.example.weather.utils.KeyboardManager
-import com.example.weather.utils.TAG
 import com.example.weather.utils.WrapContentLinearLayoutManager
 import com.example.weather.viewmodel.SearchViewModel
 
@@ -76,10 +74,10 @@ class SearchFragment : Fragment(), SearchFragmentListener
     private fun search()
     {
         val input = binding.toolbarSearch.editTextSearchToolbarQuery.text.toString()
-        fetchWeather(input)
+        fetchLocations(input)
     }
 
-    private fun fetchWeather(city: String)
+    private fun fetchLocations(city: String)
     {
         viewModel.fetchLocations(city)
     }

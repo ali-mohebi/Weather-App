@@ -58,27 +58,12 @@ class WeatherDetailsFragment : Fragment(), WeatherDetailsFragmentListener
         setActionUp()
         setDataBindingModels()
         observeViewModels()
-        maybeFetchWeather()
+        showWeather()
     }
 
     private fun createConnectionService()
     {
         ConnectionServiceHelper().createConnectionService(context, networkCallback)
-    }
-
-    private fun maybeFetchWeather()
-    {
-        if (isLocationValid(args.locationResponse))
-            args.locationResponse?.let { viewModel.fetchWeather(it) }
-        else
-            binding.model = WeatherModel(args.weatherResponse!!)
-    }
-
-    private fun isLocationValid(locationResponse: LocationResponse?): Boolean
-    {
-        if (locationResponse == null) return false
-        if (locationResponse.latitude == null || locationResponse.longitude == null) return false
-        return true
     }
 
     private fun setActionUp()
@@ -90,7 +75,6 @@ class WeatherDetailsFragment : Fragment(), WeatherDetailsFragmentListener
             appBarConfiguration
         )
     }
-
     private fun setDataBindingModels()
     {
         binding.listener = this
@@ -132,6 +116,21 @@ class WeatherDetailsFragment : Fragment(), WeatherDetailsFragmentListener
         Snackbar.make(binding.buttonWeatherDetailsSave, message, Snackbar.LENGTH_SHORT)
             .setAnchorView(binding.buttonWeatherDetailsSave)
             .show()
+    }
+
+    private fun showWeather()
+    {
+        if (isLocationValid(args.locationResponse))
+            args.locationResponse?.let { viewModel.fetchWeather(it) }
+        else
+            binding.model = WeatherModel(args.weatherResponse!!)
+    }
+
+    private fun isLocationValid(locationResponse: LocationResponse?): Boolean
+    {
+        if (locationResponse == null) return false
+        if (locationResponse.latitude == null || locationResponse.longitude == null) return false
+        return true
     }
 
     override fun onDestroyView()

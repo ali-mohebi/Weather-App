@@ -14,12 +14,7 @@ class WeatherRepository
         return WeatherDatabase(getApplication(context)).weatherDao().getAllWeathers()
     }
 
-    suspend fun fetchWeatherLocally(cityId: Int, context: Context): WeatherResponse
-    {
-        return WeatherDatabase(getApplication(context)).weatherDao().getWeather(cityId)
-    }
-
-    fun fetchWeatherFromRemote(latitude: Double, longitude: Double): Single<WeatherResponse>
+    fun fetchWeatherRemotely(latitude: Double, longitude: Double): Single<WeatherResponse>
     {
         return WeatherService().fetchWeather(latitude, longitude)
     }

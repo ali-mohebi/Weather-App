@@ -31,16 +31,26 @@ class WeatherListViewModel(application: Application) : AndroidViewModel(applicat
     private fun load()
     {
         viewModelScope.launch(Dispatchers.IO) {
-            val list = weatherListInteractor.fetchWeatherList(getApplication())
-            weatherList.postValue(list)
-            loading.postValue(false)
-
-            val pendingUpdateList = checkListForUpdate(list)
-            updateWeatherList(pendingUpdateList)
+            val list = fetchWeatherRemotely()
+            validateDateAndUpdate(list)
         }
     }
 
-    private fun checkListForUpdate(list: List<WeatherResponse>): List<WeatherResponse>
+    private suspend fun fetchWeatherRemotely(): List<WeatherResponse>
+    {
+        val list = weatherListInteractor.fetchWeatherList(getApplication())
+        weatherList.postValue(list)
+        loading.postValue(false)
+        return list
+    }
+
+    private fun validateDateAndUpdate(list: List<WeatherResponse>)
+    {
+        val pendingUpdate = checkListForUpdateNeed(list)
+        updateWeatherList(pendingUpdate)
+    }
+
+    private fun checkListForUpdateNeed(list: List<WeatherResponse>): List<WeatherResponse>
     {
         val currentTime = System.nanoTime()
         val pendingUpdate = arrayListOf<WeatherResponse>()
@@ -63,7 +73,7 @@ class WeatherListViewModel(application: Application) : AndroidViewModel(applicat
     private fun updateWeather(weatherResponse: WeatherResponse)
     {
         disposables.add(
-            weatherListInteractor.fetchRemotely(weatherResponse)
+            weatherListInteractor.fetchWeather(weatherResponse)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
@@ -89,14 +99,14 @@ class WeatherListViewModel(application: Application) : AndroidViewModel(applicat
         }
     }
 
-    public override fun onCleared()
-    {
-        disposables.clear()
-    }
-
     fun onNetworkConnected()
     {
         if(loading.value == false)
             load()
+    }
+
+    public override fun onCleared()
+    {
+        disposables.clear()
     }
 }

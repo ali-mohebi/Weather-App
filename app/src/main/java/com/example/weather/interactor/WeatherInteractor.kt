@@ -12,7 +12,7 @@ class WeatherInteractor
 
     fun fetchWeather(locationResponse: LocationResponse): Single<WeatherResponse>
     {
-        return repository.fetchWeatherFromRemote(locationResponse.latitude!!, locationResponse.longitude!!)
+        return repository.fetchWeatherRemotely(locationResponse.latitude!!, locationResponse.longitude!!)
     }
 
     suspend fun save(weatherResponse: WeatherResponse?, context: Context)

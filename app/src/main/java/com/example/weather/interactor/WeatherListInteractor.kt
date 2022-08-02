@@ -14,9 +14,9 @@ class WeatherListInteractor
         return repository.fetchWeatherListLocally(context)
     }
 
-    fun fetchRemotely(weatherResponse: WeatherResponse): Single<WeatherResponse>
+    fun fetchWeather(weatherResponse: WeatherResponse): Single<WeatherResponse>
     {
-        return repository.fetchWeatherFromRemote(
+        return repository.fetchWeatherRemotely(
             weatherResponse.coordination.latitude,
             weatherResponse.coordination.longitude
         )
