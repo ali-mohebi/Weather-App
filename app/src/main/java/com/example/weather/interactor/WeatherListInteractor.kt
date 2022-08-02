@@ -1,12 +1,9 @@
 package com.example.weather.interactor
 
 import android.content.Context
-import com.example.weather.model.repository.remote.WeatherResponse
 import com.example.weather.model.repository.WeatherRepository
-import com.example.weather.model.repository.local.WeatherDatabase
-import com.example.weather.model.repository.remote.LocationResponse
+import com.example.weather.model.repository.remote.WeatherResponse
 import io.reactivex.Single
-
 
 class WeatherListInteractor
 {
@@ -14,6 +11,19 @@ class WeatherListInteractor
 
     suspend fun fetchWeatherList(context: Context): List<WeatherResponse>
     {
-        return repository.fetchWeatherListFromDatabase(context)
+        return repository.fetchWeatherListLocally(context)
+    }
+
+    fun fetchRemotely(weatherResponse: WeatherResponse): Single<WeatherResponse>
+    {
+        return repository.fetchWeatherFromRemote(
+            weatherResponse.coordination.latitude,
+            weatherResponse.coordination.longitude
+        )
+    }
+
+    suspend fun save(weatherResponse: WeatherResponse, context: Context)
+    {
+        repository.save(weatherResponse, context)
     }
 }

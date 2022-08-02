@@ -13,6 +13,9 @@ interface WeatherDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(weather: WeatherResponse): Long
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertAll(vararg weathers: WeatherResponse): List<Long>
+
     @Query("SELECT * FROM $WEATHER_TABLE_NAME")
     suspend fun getAllWeathers(): List<WeatherResponse>
 

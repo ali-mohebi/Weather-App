@@ -9,12 +9,12 @@ import io.reactivex.Single
 
 class WeatherRepository
 {
-    suspend fun fetchWeatherListFromDatabase(context: Context): List<WeatherResponse>
+    suspend fun fetchWeatherListLocally(context: Context): List<WeatherResponse>
     {
         return WeatherDatabase(getApplication(context)).weatherDao().getAllWeathers()
     }
 
-    suspend fun fetchWeatherFromDatabase(cityId: Int, context: Context): WeatherResponse
+    suspend fun fetchWeatherLocally(cityId: Int, context: Context): WeatherResponse
     {
         return WeatherDatabase(getApplication(context)).weatherDao().getWeather(cityId)
     }
@@ -28,5 +28,13 @@ class WeatherRepository
     {
         val dao = WeatherDatabase(context).weatherDao()
         dao.insert(weatherResponse)
+    }
+
+    suspend fun saveAll(list: List<WeatherResponse>, context: Context)
+    {
+        val dao = WeatherDatabase(context).weatherDao()
+        for (item in list)
+            dao.insert(item)
+//        dao.insertAll(*list.toTypedArray())
     }
 }
