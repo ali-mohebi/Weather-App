@@ -98,7 +98,7 @@
                     android:padding="8dp">
                     
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imageView_weatherDetails_temperature"
+                        android:id="@+id/imageView_weatherDetails_temperatureIcon"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/ic_weather_temperature"
@@ -116,7 +116,7 @@
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/imageView_weatherDetails_temperature"
+                        app:layout_constraintTop_toBottomOf="@id/imageView_weatherDetails_temperatureIcon"
                         tools:text="21\u2103" />
                     
                     <com.google.android.material.textview.MaterialTextView
@@ -148,7 +148,7 @@
                     android:padding="8dp">
                     
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imageView_weatherDetails_wind"
+                        android:id="@+id/imageView_weatherDetails_windIcon"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/ic_weather_wind"
@@ -166,7 +166,7 @@
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/imageView_weatherDetails_wind"
+                        app:layout_constraintTop_toBottomOf="@id/imageView_weatherDetails_windIcon"
                         tools:text="21 m/s" />
                     
                     <com.google.android.material.textview.MaterialTextView
@@ -198,7 +198,7 @@
                     android:padding="8dp">
             
                     <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imageView_weatherDetails_humidity"
+                        android:id="@+id/imageView_weatherDetails_humidityIcon"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:src="@drawable/ic_weather_humidity"
@@ -216,7 +216,7 @@
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/imageView_weatherDetails_humidity"
+                        app:layout_constraintTop_toBottomOf="@id/imageView_weatherDetails_humidityIcon"
                         tools:text="26%" />
             
                     <com.google.android.material.textview.MaterialTextView
