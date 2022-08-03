@@ -4,7 +4,8 @@
 ## Architecture
 MVVMi: Model View ViewModel interactor
 
-![MVVMi](https://user-images.githubusercontent.com/27705733/182529827-105d64df-98e1-4675-ac82-a0899d7f75e5.png)
+![MVVMi (1)](https://user-images.githubusercontent.com/27705733/182532012-f3946db5-f4fc-4cea-8b4e-65366e09932b.png)
+
 
 ## Network APIs
 Retrofit
